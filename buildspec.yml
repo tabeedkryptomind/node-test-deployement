@@ -16,9 +16,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - cp -R node_modules/ dist/node_modules
-      - cp -R .ebextensions dist/.ebextensions
-      - cp Procfile dist/Procfile
+       - cp Procfile dist/Procfile
 artifacts:
   files:
     - "**/*"
