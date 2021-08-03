@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  variables:
+    NODE_ENV: "development"
+    SERVER_PORT: "8080"
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - npm install -g @nestjs/cli
+      - npm install
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - cp -R node_modules/ dist/node_modules
+      - cp -R .ebextensions dist/.ebextensions
+      - cp Procfile dist/Procfile
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist
